@@ -1,0 +1,6 @@
+{
+  "name": "ICE & STEAK",
+  "description": "Discover ICE & STEAK in Owerri — an elevated dining experience centred around exceptional food, atmosphere and unforgettable evenings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
