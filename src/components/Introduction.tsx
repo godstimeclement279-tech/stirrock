@@ -1,86 +1,93 @@
-import { motion } from 'motion/react';
-import { IMAGES } from '../data/restaurantData';
+import { RESTAURANT_INFO } from '../data/restaurantData';
+import {
+  LineRevealHeadline,
+  EditorialFadeUp,
+  MaskedImageReveal,
+} from './ScrollReveal';
 
 export function Introduction() {
   return (
-    <section id="introduction" className="relative py-28 sm:py-36 lg:py-44 bg-[#070708] overflow-hidden">
-      {/* Decorative architectural hairline watermark */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        
-        {/* Asymmetric Magazine Spread Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Editorial Column: Headline + Typography */}
-          <div className="lg:col-span-5 flex flex-col justify-between pt-4 lg:sticky lg:top-32">
-            <div>
-              <span className="text-[10px] font-sans tracking-[0.4em] uppercase text-[#C5A880] block mb-4">
-                Philosophy & Setting
-              </span>
-              
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#F4F1EA] font-light tracking-[0.05em] leading-[1.12]">
-                A TABLE WORTH REMEMBERING.
-              </h2>
-
-              <div className="w-12 h-[1px] bg-[#C5A880]/50 my-8 sm:my-10" />
-
-              <p className="font-sans text-sm sm:text-base text-[#E8E4DC]/80 font-light leading-[1.8] tracking-wide">
-                ICE & STEAK was established with a singular conviction: that the art of open-fire grilling, when married with architectural stillness and meticulous hospitality, elevates dining into a sensory ritual. 
+    <section
+      id="our-story"
+      className="py-24 sm:py-32 lg:py-40 bg-[#FAF7F3] text-[#272124] border-b border-[#E9E0DF]"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+        {/* Top Editorial Spread Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 sm:mb-24">
+          <div className="lg:col-span-8">
+            <EditorialFadeUp>
+              <p className="text-xs font-sans font-semibold tracking-[0.24em] uppercase text-[#722F45] mb-4">
+                01. The Experience · Agbor, Delta State
               </p>
+            </EditorialFadeUp>
 
-              <p className="mt-6 font-sans text-sm sm:text-base text-[#9C988F] font-light leading-[1.8] tracking-wide">
-                Located on Ikenegbu Layout in Owerri, our dining room provides a quiet escape from the noise—where prime cuts are aged under salt blocks, coals glow with measured heat, and the evening unfolds at an unhurried cadence.
-              </p>
-            </div>
-
-            {/* Editorial Signature Element */}
-            <div className="mt-12 sm:mt-16 pt-8 border-t border-white/[0.08] flex items-center justify-between">
-              <div>
-                <span className="block text-[11px] font-serif italic text-[#C5A880]">The Hearth Room</span>
-                <span className="text-[10px] font-sans tracking-[0.25em] text-[#9C988F] uppercase">Owerri · Imo State</span>
-              </div>
-              <span className="font-serif text-2xl text-[#E8E4DC]/30">№ 173</span>
-            </div>
+            <LineRevealHeadline
+              lines={['GOOD FOOD.', 'GOOD COMPANY.']}
+              className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#272124] font-normal leading-[1.06] tracking-[0.01em]"
+              delay={0.08}
+            />
           </div>
 
-          {/* Right Imagery Column: Asymmetric Composition (One oversized, one smaller offset) */}
-          <div className="lg:col-span-7 flex flex-col sm:flex-row gap-6 sm:gap-8 items-start lg:pl-6">
-            
-            {/* Oversized Primary Image */}
-            <div className="w-full sm:w-7/12 relative group overflow-hidden">
-              <div className="aspect-[3/4] overflow-hidden bg-[#141417]">
-                <img
-                  src={IMAGES.diningRoom}
-                  alt="Intimate dark dining room at ICE & STEAK with low-voltage warm illumination"
-                  className="w-full h-full object-cover filter brightness-[0.88] contrast-[1.05] transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="mt-3 flex justify-between items-center text-[10px] tracking-[0.2em] text-[#9C988F] uppercase">
-                <span>The Main Salon</span>
-                <span>Fig. 01</span>
-              </div>
-            </div>
-
-            {/* Smaller Supporting Image with vertical offset */}
-            <div className="w-full sm:w-5/12 sm:pt-20 relative group overflow-hidden">
-              <div className="aspect-[4/5] overflow-hidden bg-[#141417]">
-                <img
-                  src={IMAGES.wagyuSlice}
-                  alt="Hand-cut wagyu with crystal sea salt"
-                  className="w-full h-full object-cover filter brightness-[0.85] contrast-[1.1] transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="mt-3 flex justify-between items-center text-[10px] tracking-[0.2em] text-[#9C988F] uppercase">
-                <span>Prime Marbling</span>
-                <span>Fig. 02</span>
-              </div>
-            </div>
-
+          <div className="lg:col-span-4 lg:border-l lg:border-[#E9E0DF] lg:pl-8">
+            <EditorialFadeUp delay={0.18}>
+              <p className="font-sans text-sm sm:text-base text-[#272124]/80 leading-relaxed">
+                Located on Innu Ugbo Street in Agbor, Stirrock Restaurant brings
+                together familiar Nigerian favourites, international classics,
+                and a warm, inviting space designed for sharing memorable meals.
+              </p>
+            </EditorialFadeUp>
           </div>
-
         </div>
 
+        {/* Asymmetric Magazine Spread Composition: 1 Large Image + 1 Smaller Supporting Image + Short Text Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left: Large Dominant Architectural/Dining Photograph with Parallax & Clip-Path Reveal (7 cols) */}
+          <div className="lg:col-span-7">
+            <MaskedImageReveal
+              src={RESTAURANT_INFO.images.introDining}
+              alt="Warm contemporary dining room setting concept for Stirrock Restaurant"
+              aspectClassName="aspect-[4/3]"
+              enableParallax={true}
+              className="border border-[#E9E0DF]"
+            />
+            <EditorialFadeUp delay={0.15}>
+              <div className="mt-3 flex items-center justify-between text-xs font-sans text-[#272124]/60">
+                <span>Editorial Space Concept · Warm Linen & Timber</span>
+                <span>Innu Ugbo Street, Agbor</span>
+              </div>
+            </EditorialFadeUp>
+          </div>
+
+          {/* Right: Smaller Supporting Portrait Image + Concise Editorial Copy (5 cols, offset down on desktop) */}
+          <div className="lg:col-span-5 lg:mt-14 flex flex-col justify-between space-y-8">
+            <div className="w-4/5 sm:w-3/4 lg:w-5/6">
+              <MaskedImageReveal
+                src={RESTAURANT_INFO.images.tableDetail}
+                alt="Intimate table setting and plated starter detail"
+                aspectClassName="aspect-[3/4]"
+                delay={0.12}
+                className="border border-[#E9E0DF]"
+              />
+            </div>
+
+            <EditorialFadeUp delay={0.22}>
+              <div className="pt-5 border-t border-[#722F45]/25 space-y-4">
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#722F45] font-normal">
+                  A welcoming table for every occasion.
+                </h3>
+                <p className="font-sans text-[15px] text-[#272124]/80 leading-relaxed">
+                  Whether you are stopping by for smoky jollof rice and grilled
+                  catfish, enjoying pasta or steak with friends, or celebrating
+                  with family in Agbor, every detail is shaped around comfort
+                  and good taste.
+                </p>
+                <p className="text-xs font-sans text-[#722F45] tracking-wider uppercase pt-1">
+                  Good Taste · Beautifully Done
+                </p>
+              </div>
+            </EditorialFadeUp>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,16 +1,16 @@
 export interface MenuItem {
   id: string;
   name: string;
-  cutOrOrigin?: string;
+  originTag: string;
   description: string;
-  pricePlaceholder?: string;
+  samplePrice: string;
   image: string;
-  tag?: string;
 }
 
 export interface MenuCategory {
   id: string;
   name: string;
+  groupLabel: 'Signature Kitchen' | 'Accompaniments & Refreshments';
   subtitle: string;
   items: MenuItem[];
 }
@@ -19,18 +19,15 @@ export interface GalleryItem {
   id: string;
   title: string;
   category: string;
-  aspect: 'portrait' | 'landscape' | 'square' | 'wide';
+  aspect: 'portrait' | 'landscape' | 'wide';
   image: string;
   caption: string;
 }
 
-export interface ReservationSubmission {
+export interface ReservationEnquiry {
   name: string;
   phone: string;
-  email: string;
   date: string;
-  time: string;
-  guests: number;
-  seatingPreference: string;
-  specialRequests: string;
+  guests: string;
+  message: string;
 }

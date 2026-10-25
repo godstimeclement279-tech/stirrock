@@ -1,142 +1,178 @@
-import { MapPin, Phone, ArrowUpRight, Clock } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
+import { LineRevealHeadline, EditorialFadeUp } from './ScrollReveal';
 
 export function LocationSection() {
   return (
-    <section id="location" className="py-28 sm:py-36 bg-[#070708] border-t border-white/[0.05] relative">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column: Address & Details */}
-          <div className="lg:col-span-5">
-            <span className="text-[10px] font-sans tracking-[0.4em] uppercase text-[#C5A880] block mb-3">
-              Destination
-            </span>
-            <h2 className="font-serif text-3xl sm:text-5xl text-[#F4F1EA] font-light tracking-[0.05em] mb-8">
-              ICE & STEAK
-            </h2>
-
-            {/* Address */}
-            <div className="space-y-1 mb-8">
-              <p className="font-serif text-xl sm:text-2xl text-[#E8E4DC] font-light">
-                {RESTAURANT_INFO.address.street}
-              </p>
-              <p className="font-sans text-sm text-[#9C988F] tracking-wide">
-                {RESTAURANT_INFO.address.city}, {RESTAURANT_INFO.address.state}
-              </p>
-              <p className="font-sans text-sm text-[#9C988F] tracking-wide">
-                {RESTAURANT_INFO.address.country}
-              </p>
-            </div>
-
-            {/* Telephone Contact */}
-            <div className="mb-10 pb-8 border-b border-white/[0.08]">
-              <span className="text-[10px] font-sans tracking-[0.25em] text-[#9C988F] uppercase block mb-2">
-                Concierge Direct
-              </span>
-              <a
-                href={`tel:${RESTAURANT_INFO.phone.replace(/\s+/g, '')}`}
-                className="font-serif text-2xl text-[#F4F1EA] hover:text-[#C5A880] transition-colors inline-flex items-center gap-3"
-              >
-                <span>{RESTAURANT_INFO.phone}</span>
-                <ArrowUpRight size={18} className="text-[#C5A880]" />
-              </a>
-            </div>
-
-            {/* Hours */}
-            <div className="space-y-4 mb-10">
-              <span className="text-[10px] font-sans tracking-[0.25em] text-[#9C988F] uppercase block">
-                Hours of Service
-              </span>
-              {RESTAURANT_INFO.hours.map((h) => (
-                <div key={h.days} className="flex justify-between items-baseline text-xs sm:text-sm">
-                  <span className="text-[#E8E4DC]">{h.days}</span>
-                  <span className="text-[#9C988F] font-light">{h.time}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Directions Action */}
+    <section
+      id="contact"
+      className="py-24 sm:py-32 lg:py-40 bg-[#FAF7F3] text-[#272124] border-t border-[#E9E0DF]"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+          {/* Left Column: Minimal, Elegant Address & Directions */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-10">
             <div>
+              <EditorialFadeUp>
+                <p className="text-xs font-sans font-semibold tracking-[0.24em] uppercase text-[#722F45] mb-3">
+                  06. Location & Contact
+                </p>
+              </EditorialFadeUp>
+
+              <LineRevealHeadline
+                lines={['STIRROCK', 'RESTAURANT']}
+                className="font-serif text-3xl sm:text-5xl text-[#272124] font-normal tracking-[0.04em] mb-8"
+                delay={0.05}
+              />
+
+              <EditorialFadeUp delay={0.14}>
+                <address className="not-italic space-y-1.5 border-l border-[#722F45] pl-5 py-1">
+                  <p className="font-serif text-2xl sm:text-3xl text-[#272124]">
+                    {RESTAURANT_INFO.address.street}
+                  </p>
+                  <p className="font-sans text-base text-[#272124]/80">
+                    {RESTAURANT_INFO.address.city}
+                  </p>
+                  <p className="font-sans text-base text-[#272124]/80">
+                    {RESTAURANT_INFO.address.state},{' '}
+                    {RESTAURANT_INFO.address.country}
+                  </p>
+                </address>
+              </EditorialFadeUp>
+            </div>
+
+            {/* Direct Contact & Launch Integration Note (No invented phone numbers) */}
+            <EditorialFadeUp
+              delay={0.2}
+              className="py-6 border-t border-b border-[#E9E0DF] space-y-2"
+            >
+              <p className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[#722F45]">
+                Direct Telephone & Opening Hours
+              </p>
+              <p className="font-sans text-sm text-[#272124]/75 leading-relaxed">
+                Reserved for Stirrock Restaurant’s verified telephone number,
+                service hours, and official social handles upon owner
+                confirmation.
+              </p>
+            </EditorialFadeUp>
+
+            {/* GET DIRECTIONS CTA */}
+            <EditorialFadeUp delay={0.26}>
               <a
                 href={RESTAURANT_INFO.googleMapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="luxury-button-underline text-xs tracking-[0.25em] text-[#F4F1EA] hover:text-[#C5A880] inline-flex items-center gap-2 cursor-pointer"
+                className="editorial-btn inline-flex items-center gap-3 px-7 py-4 bg-[#722F45] text-[#FAF7F3] hover:bg-[#481B2B] text-xs font-sans font-semibold tracking-[0.2em] uppercase whitespace-nowrap shrink-0"
               >
                 <span>GET DIRECTIONS</span>
-                <ArrowUpRight size={14} className="text-[#C5A880]" />
+                <ArrowUpRight size={16} />
               </a>
-            </div>
+            </EditorialFadeUp>
           </div>
 
-          {/* Right Column: Architectural Dark Vector Map */}
-          <div className="lg:col-span-7">
-            <div className="relative aspect-[16/11] bg-[#0c0c0f] border border-white/[0.08] overflow-hidden p-6 sm:p-8 flex flex-col justify-between group">
-              
-              {/* Architectural Grid & Road Network Simulation for Ikenegbu Layout, Owerri */}
-              <div className="absolute inset-0 opacity-40 pointer-events-none">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          {/* Right Column: Architectural Location Panel for Innu Ugbo Street, Agbor */}
+          <EditorialFadeUp delay={0.16} className="lg:col-span-7">
+            <div className="relative h-full min-h-[380px] bg-[#FFFFFF] border border-[#E9E0DF] p-6 sm:p-10 flex flex-col justify-between overflow-hidden">
+              {/* Architectural Street Grid Vector Illustration in Wine & Soft Neutral */}
+              <div className="absolute inset-0 pointer-events-none opacity-65">
+                <svg
+                  className="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
                   <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                    <pattern
+                      id="stirrock-grid"
+                      width="48"
+                      height="48"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path
+                        d="M 48 0 L 0 0 0 48"
+                        fill="none"
+                        stroke="#E9E0DF"
+                        strokeWidth="1"
+                      />
                     </pattern>
                   </defs>
-                  <rect width="100%" height="100%" fill="url(#grid)" />
-                  {/* Stylized Street Lines */}
-                  <line x1="10%" y1="20%" x2="90%" y2="25%" stroke="rgba(232, 228, 220, 0.12)" strokeWidth="2" />
-                  <line x1="20%" y1="10%" x2="40%" y2="90%" stroke="rgba(232, 228, 220, 0.08)" strokeWidth="1.5" />
-                  <line x1="5%" y1="65%" x2="95%" y2="60%" stroke="rgba(232, 228, 220, 0.15)" strokeWidth="3" />
-                  <line x1="70%" y1="15%" x2="75%" y2="85%" stroke="rgba(232, 228, 220, 0.1)" strokeWidth="1.5" />
-                  <line x1="45%" y1="35%" x2="85%" y2="40%" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="2" />
+                  <rect width="100%" height="100%" fill="url(#stirrock-grid)" />
+                  <line
+                    x1="5%"
+                    y1="28%"
+                    x2="95%"
+                    y2="22%"
+                    stroke="#E9E0DF"
+                    strokeWidth="6"
+                  />
+                  <line
+                    x1="15%"
+                    y1="68%"
+                    x2="92%"
+                    y2="54%"
+                    stroke="#722F45"
+                    strokeOpacity="0.22"
+                    strokeWidth="4"
+                  />
+                  <line
+                    x1="34%"
+                    y1="8%"
+                    x2="46%"
+                    y2="92%"
+                    stroke="#E9E0DF"
+                    strokeWidth="5"
+                  />
+                  <line
+                    x1="68%"
+                    y1="10%"
+                    x2="62%"
+                    y2="90%"
+                    stroke="#722F45"
+                    strokeOpacity="0.16"
+                    strokeWidth="3"
+                  />
                 </svg>
               </div>
 
-              {/* Top Map Labels */}
-              <div className="relative z-10 flex items-center justify-between text-[10px] tracking-[0.25em] text-[#9C988F] uppercase">
-                <span>Coordinates · 5.4891° N, 7.0336° E</span>
-                <span className="text-[#C5A880]">Ikenegbu Quarter</span>
+              {/* Top Map Bar */}
+              <div className="relative z-10 flex items-center justify-between text-xs font-sans tracking-[0.18em] uppercase text-[#722F45]">
+                <span>Agbor 321001 · Delta State</span>
+                <span>Innu Ugbo Street</span>
               </div>
 
-              {/* Pinpoint in Map */}
-              <div className="relative z-10 my-auto text-center flex flex-col items-center">
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-full border border-[#C5A880]/30 flex items-center justify-center animate-pulse">
-                    <div className="w-3 h-3 rounded-full bg-[#C5A880]" />
-                  </div>
+              {/* Center Architectural Marker Card */}
+              <div className="relative z-10 my-10 mx-auto max-w-sm w-full bg-[#FAF7F3] border border-[#722F45]/30 p-6 text-center shadow-xs">
+                <div className="w-9 h-9 mx-auto mb-3 bg-[#722F45] text-[#FAF7F3] flex items-center justify-center">
+                  <MapPin size={18} />
                 </div>
-                <div className="mt-4 bg-[#070708]/90 backdrop-blur-md px-5 py-3 border border-white/10 shadow-xl">
-                  <span className="font-serif text-sm tracking-wider text-[#F4F1EA] block">
-                    ICE & STEAK
-                  </span>
-                  <span className="text-[9px] tracking-[0.2em] text-[#9C988F] uppercase">
-                    173 Ikenegbu Layout, Owerri
-                  </span>
-                </div>
+                <p className="font-serif text-2xl text-[#272124] tracking-wide">
+                  STIRROCK RESTAURANT
+                </p>
+                <p className="mt-1 font-sans text-xs text-[#272124]/75 tracking-wider uppercase">
+                  Innu Ugbo Street, Agbor 321001
+                </p>
+                <p className="mt-0.5 font-sans text-xs text-[#722F45]">
+                  Delta State, Nigeria
+                </p>
               </div>
 
-              {/* Bottom Interactive Trigger */}
-              <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/[0.06]">
-                <span className="text-[10px] text-[#9C988F] tracking-wider">
-                  Valet parking available at private entrance
+              {/* Bottom Map Bar */}
+              <div className="relative z-10 pt-4 border-t border-[#E9E0DF] flex items-center justify-between gap-4 text-xs font-sans">
+                <span className="text-[#272124]/70">
+                  Interactive Google Maps Route Search
                 </span>
                 <a
                   href={RESTAURANT_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#C5A880] hover:text-[#F4F1EA] flex items-center gap-1"
+                  className="editorial-nav-link font-semibold text-[#722F45] hover:text-[#481B2B] inline-flex items-center gap-1.5 tracking-wider uppercase whitespace-nowrap shrink-0"
                 >
-                  <span>Open in Maps</span>
-                  <ArrowUpRight size={12} />
+                  <span>Open Map Search</span>
+                  <ArrowUpRight size={14} />
                 </a>
               </div>
-
             </div>
-          </div>
-
+          </EditorialFadeUp>
         </div>
-
       </div>
     </section>
   );

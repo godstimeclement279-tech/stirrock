@@ -1,316 +1,374 @@
-import heroSteakImage from '../assets/images/hero_steak_fire_1789203891775.jpg';
-import artOfSteakImage from '../assets/images/art_of_steak_1789203907090.jpg';
-import luxuryDiningRoomImage from '../assets/images/luxury_dining_room_1789203919528.jpg';
+import heroCuisineImg from '../assets/images/stirrock_hero_cuisine_1792921983304.jpg';
+import introDiningImg from '../assets/images/stirrock_intro_dining_1792921985181.jpg';
+import tableDetailImg from '../assets/images/stirrock_table_detail_1792921986378.jpg';
+import signatureDishImg from '../assets/images/stirrock_signature_dish_1792921986276.jpg';
+import dessertDrinksImg from '../assets/images/stirrock_dessert_drinks_1792921988043.jpg';
+import jollofChickenImg from '../assets/images/stirrock_jollof_chicken_1792923293793.jpg';
+import egusiPoundedYamImg from '../assets/images/stirrock_egusi_pounded_yam_1792923294600.jpg';
+import grilledCatfishImg from '../assets/images/stirrock_grilled_catfish_suya_1792923296074.jpg';
+import chapmanCocktailsImg from '../assets/images/stirrock_chapman_cocktails_1792923296422.jpg';
+import alfredoPastaImg from '../assets/images/stirrock_alfredo_pasta_1792923297375.jpg';
+import ribeyeSteakImg from '../assets/images/art_of_steak_1789203907090.jpg';
 import { MenuCategory, GalleryItem } from '../types';
 
 export const RESTAURANT_INFO = {
-  name: 'ICE & STEAK',
-  tagline: 'WHERE FIRE MEETS FINESSE',
-  subheading: 'An elevated dining experience shaped by exceptional cuts, refined flavours and unforgettable evenings.',
+  name: 'STIRROCK RESTAURANT',
+  wordmark: 'STIRROCK',
+  tagline: 'GOOD TASTE. BEAUTIFULLY DONE.',
+  heroSupporting:
+    'From Nigerian favourites to international classics, discover food made for sharing, celebrating and coming back for.',
   address: {
-    street: '173 Ikenegbu Layout',
-    city: 'Owerri',
-    state: 'Imo State',
+    street: 'Innu Ugbo Street',
+    city: 'Agbor 321001',
+    state: 'Delta State',
     country: 'Nigeria',
-    full: '173 Ikenegbu Layout, Owerri, Imo State, Nigeria'
+    full: 'Innu Ugbo Street, Agbor 321001, Delta State, Nigeria',
   },
-  phone: '+234 816 175 8771',
-  phoneFormatted: '+234 816 175 8771',
-  whatsappUrl: 'https://wa.me/2348161758771?text=Hello%20ICE%20%26%20STEAK%2C%20I%20would%20like%20to%20inquire%20about%20a%20table%20reservation.',
-  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=173+Ikenegbu+Layout+Owerri+Imo+State+Nigeria',
-  hours: [
-    { days: 'Tuesday — Thursday', time: '17:00 — 23:30' },
-    { days: 'Friday — Sunday', time: '16:00 — 01:00' },
-    { days: 'Monday', time: 'Private Dining & Events Only' }
-  ]
+  googleMapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=Stirrock+Restaurant+Innu+Ugbo+Street+Agbor+321001+Delta+State+Nigeria',
+  images: {
+    heroCuisine: heroCuisineImg,
+    introDining: introDiningImg,
+    tableDetail: tableDetailImg,
+    signatureDish: signatureDishImg,
+    dessertDrinks: dessertDrinksImg,
+    jollofChicken: jollofChickenImg,
+    egusiPoundedYam: egusiPoundedYamImg,
+    grilledCatfish: grilledCatfishImg,
+    chapmanCocktails: chapmanCocktailsImg,
+    alfredoPasta: alfredoPastaImg,
+    ribeyeSteak: ribeyeSteakImg,
+  },
 };
 
-export const IMAGES = {
-  hero: heroSteakImage,
-  artOfSteak: artOfSteakImage,
-  diningRoom: luxuryDiningRoomImage,
-  // Curated dark, editorial luxury imagery with deep contrast & warm highlights
-  cocktailSmoked: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85',
-  winePour: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=85',
-  grillEmbers: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85',
-  chefFirePrep: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85',
-  wagyuSlice: 'https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&w=1200&q=85',
-  tableSettingDark: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=85',
-  oystersCaviar: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1200&q=85',
-  charcuteriePlate: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=85',
-  dessertDarkChoc: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=1200&q=85'
-};
-
-export const STEAK_EXPERIENCE_CATEGORIES = [
+/**
+ * Editable Demonstration Menu Configuration
+ * All dishes and prices below are illustrative sample items for the Stirrock website presentation.
+ */
+export const SAMPLE_MENU_CATEGORIES: MenuCategory[] = [
   {
-    title: 'SIGNATURE CUTS',
-    description: 'Dry-aged in-house for minimum 35 days under Himalayan salt blocks, seared over white oak and charcoal.',
+    id: 'nigerian',
+    name: 'Nigerian Favourites',
+    groupLabel: 'Signature Kitchen',
+    subtitle:
+      'Proposed sample Nigerian classics — illustrative demo pricing for owner review',
     items: [
-      { name: '45-Day Dry-Aged Tomahawk', cut: 'Prime Black Angus · 1.2kg', notes: 'Bone-in, rich marbling, finished with smoked Maldon crystal salt', price: 'Market Selection' },
-      { name: 'A5 Miyazaki Wagyu Ribeye', cut: 'Japanese Black Cattle · 300g', notes: 'BMS 10+, flash-seared at 900°F with fresh wasabi root and truffle butter', price: 'Chef Selection' },
-      { name: 'Bone-In Kansas Strip', cut: 'USDA Prime · 600g', notes: 'Cast-iron basted with bone marrow, charred thyme, and confit garlic', price: 'Market Selection' }
-    ]
+      {
+        id: 'ng-1',
+        name: 'Jollof Rice & Grilled Chicken',
+        originTag: 'Nigerian Classic · Demo Item',
+        description:
+          'Smoky Nigerian-style jollof rice served with grilled chicken and a fresh side garnish.',
+        samplePrice: '₦8,500',
+        image: jollofChickenImg,
+      },
+      {
+        id: 'ng-2',
+        name: 'Native Rice',
+        originTag: 'Traditional Preparation · Demo Item',
+        description:
+          'A richly flavoured Nigerian rice dish prepared with traditional-style seasoning.',
+        samplePrice: '₦8,000',
+        image: jollofChickenImg,
+      },
+      {
+        id: 'ng-3',
+        name: 'Egusi Soup & Pounded Yam',
+        originTag: 'Signature Swallow · Demo Item',
+        description:
+          'A Nigerian classic featuring melon-seed soup served with smooth pounded yam.',
+        samplePrice: '₦9,500',
+        image: egusiPoundedYamImg,
+      },
+      {
+        id: 'ng-4',
+        name: 'Pepper Soup',
+        originTag: 'Aromatic Broth · Demo Item',
+        description:
+          'A warming, peppery broth with a choice of fish or assorted meat.',
+        samplePrice: '₦7,500',
+        image: egusiPoundedYamImg,
+      },
+      {
+        id: 'ng-5',
+        name: 'Ofada Rice & Ayamase Sauce',
+        originTag: 'Local Favourite · Demo Item',
+        description:
+          'Local rice paired with a rich green pepper sauce.',
+        samplePrice: '₦8,500',
+        image: jollofChickenImg,
+      },
+      {
+        id: 'ng-6',
+        name: 'Grilled Catfish',
+        originTag: 'From the Grill · Demo Item',
+        description:
+          'Seasoned grilled catfish served with pepper sauce and a suitable side.',
+        samplePrice: '₦15,000',
+        image: grilledCatfishImg,
+      },
+      {
+        id: 'ng-7',
+        name: 'Suya Platter',
+        originTag: 'Spiced Grill · Demo Item',
+        description:
+          'Spiced grilled beef served with onions, fresh tomatoes and pepper sauce.',
+        samplePrice: '₦9,000',
+        image: grilledCatfishImg,
+      },
+    ],
   },
   {
-    title: 'PREMIUM GRILLS',
-    description: 'Flame-finished over aromatic hardwood embers to seal caramelized crust with tender core.',
-    items: [
-      { name: 'Black Angus Center-Cut Tenderloin', cut: 'Grain-Fed 250g', notes: 'Finished with pink peppercorn jus and smoked bone marrow butter', price: 'Selected Daily' },
-      { name: 'Wood-Fired Picanha Steak', cut: 'Prime Sirloin Cap · 400g', notes: 'Skewered over open embers with coarse sea salt and smoked chimichurri', price: 'Selected Daily' },
-      { name: 'Fire-Charred Lamb Rack', cut: 'Grass-Fed Pasture Lamb', notes: 'Crusted with wild herbs, pomegranate glaze, and ember-roasted garlic', price: 'Chef Selection' }
-    ]
-  },
-  {
-    title: "CHEF'S SPECIALS",
-    description: 'Exclusive cuts and curated pairings refreshed weekly according to provenance and aging maturity.',
-    items: [
-      { name: 'The Owerri Fire Board', cut: 'Tasting of Three Premier Cuts', notes: 'Tenderloin, aged striploin, and wagyu slices served on charred slate', price: 'Signature Tasting' },
-      { name: 'Whole Roasted Beef Rib', cut: 'Slow-Smoked 14 Hours', notes: 'Glazed with African bird’s eye reduction and aged balsamic', price: 'Limited Reserve' }
-    ]
-  }
-];
-
-export const MENU_CATEGORIES: MenuCategory[] = [
-  {
-    id: 'starters',
-    name: 'STARTERS',
-    subtitle: 'Beginnings crafted with tension between cold and fire',
+    id: 'intercontinental',
+    name: 'Intercontinental Favourites',
+    groupLabel: 'Signature Kitchen',
+    subtitle:
+      'Proposed sample international classics — illustrative demo pricing for owner review',
     items: [
       {
-        id: 'st-1',
-        name: 'Hand-Cut Wagyu Tartare',
-        cutOrOrigin: 'A5 Beef · Smoked Egg Emulsion',
-        description: 'Cured egg yolk, pickled mustard seed, bone marrow brioche toast points.',
-        pricePlaceholder: 'Refined Opening',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80',
-        tag: 'Signature'
+        id: 'ic-1',
+        name: 'Grilled Ribeye Steak',
+        originTag: 'Prime Grill · Demo Item',
+        description:
+          'A grilled ribeye steak served with a choice of side and sauce.',
+        samplePrice: '₦28,000',
+        image: ribeyeSteakImg,
       },
       {
-        id: 'st-2',
-        name: 'Charred Octopus Tentacle',
-        cutOrOrigin: 'Atlantic Catch · Ember Grilled',
-        description: 'Saffron potato mousseline, smoked paprika oil, crispy caper berries.',
-        pricePlaceholder: 'Coastal Reserve',
-        image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80'
+        id: 'ic-2',
+        name: 'Creamy Alfredo Pasta',
+        originTag: 'Italian Inspired · Demo Item',
+        description:
+          'Pasta tossed in a creamy sauce with herbs and Parmesan-style cheese.',
+        samplePrice: '₦12,000',
+        image: alfredoPastaImg,
       },
       {
-        id: 'st-3',
-        name: 'Fire-Roasted Bone Marrow',
-        cutOrOrigin: 'Split Beef Canoe',
-        description: 'Parsley-shallot salad, grilled sourdough, capers, smoked fleur de sel.',
-        pricePlaceholder: 'House Favorite',
-        image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80'
-      }
-    ]
-  },
-  {
-    id: 'steaks',
-    name: 'STEAKS',
-    subtitle: 'Heritage breeds dry-aged and flame-kissed over selected wood coals',
-    items: [
-      {
-        id: 'stk-1',
-        name: 'Tomahawk Ribeye 45-Day Dry Aged',
-        cutOrOrigin: 'Prime Black Angus · 1200g',
-        description: 'Charred over white oak and charcoal, served with smoked bone marrow butter and roasted garlic.',
-        pricePlaceholder: 'Tableside Carved',
-        image: heroSteakImage,
-        tag: 'House Masterpiece'
+        id: 'ic-3',
+        name: 'Grilled Chicken Breast',
+        originTag: 'Light & Savoury · Demo Item',
+        description:
+          'Seasoned chicken breast served with vegetables and a choice of side.',
+        samplePrice: '₦14,000',
+        image: heroCuisineImg,
       },
       {
-        id: 'stk-2',
-        name: 'A5 Miyazaki Wagyu Ribcap',
-        cutOrOrigin: 'Miyazaki Prefecture, Japan',
-        description: 'Extreme marbling BMS 11, seared over binchotan coal, fresh wasabi root, smoked volcanic salt.',
-        pricePlaceholder: 'Curated Reserve',
-        image: artOfSteakImage,
-        tag: 'Rare Import'
+        id: 'ic-4',
+        name: 'Beef Burger & Fries',
+        originTag: 'House Favourite · Demo Item',
+        description:
+          'A beef burger with lettuce, tomato and sauce, served with fries.',
+        samplePrice: '₦12,500',
+        image: ribeyeSteakImg,
       },
       {
-        id: 'stk-3',
-        name: 'Prime Black Angus Porterhouse',
-        cutOrOrigin: 'Nebraska Prime · 900g',
-        description: 'The definitive union of tender tenderloin and deep-flavoured strip, finished in foaming butter.',
-        pricePlaceholder: 'Ideal for Two',
-        image: 'https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&w=1000&q=80'
+        id: 'ic-5',
+        name: 'Grilled Salmon',
+        originTag: 'Ocean Catch · Demo Item',
+        description:
+          'Grilled salmon served with seasonal vegetables and a suitable side.',
+        samplePrice: '₦25,000',
+        image: signatureDishImg,
       },
       {
-        id: 'stk-4',
-        name: 'Center-Cut Filet Mignon',
-        cutOrOrigin: 'Grain-Fed Tenderloin · 280g',
-        description: 'Velvety texture, seared with rosemary, cracked telicherry black pepper, red wine reduction.',
-        pricePlaceholder: 'Classic Reserve',
-        image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80'
-      }
-    ]
-  },
-  {
-    id: 'mains',
-    name: 'MAINS',
-    subtitle: 'Beyond beef — deliberate ocean catches and hearth-roasted poultry',
-    items: [
-      {
-        id: 'mn-1',
-        name: 'Wood-Fired Whole Branzino',
-        cutOrOrigin: 'Mediterranean Sea Bass',
-        description: 'Stuffed with fresh lemon verbena, wild oregano, charred over embers, extra virgin olive oil.',
-        pricePlaceholder: 'Catch of Day',
-        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1000&q=80'
+        id: 'ic-6',
+        name: 'Chicken Stir-Fry',
+        originTag: 'Wok & Pan · Demo Item',
+        description:
+          'Chicken and vegetables tossed in a savoury sauce, served with rice.',
+        samplePrice: '₦13,000',
+        image: heroCuisineImg,
       },
       {
-        id: 'mn-2',
-        name: 'Ember-Smoked Duck Breast',
-        cutOrOrigin: 'Dry-Aged Moulard',
-        description: 'Crisp scored skin, tart blackberry reduction, parsnip puree, charred broccolini.',
-        pricePlaceholder: 'Chef Signature',
-        image: 'https://images.unsplash.com/photo-1514944298352-f67584100650?auto=format&fit=crop&w=1000&q=80'
+        id: 'ic-7',
+        name: 'Margherita Pizza',
+        originTag: 'Oven Baked · Demo Item',
+        description:
+          'A classic pizza topped with tomato sauce, mozzarella and basil.',
+        samplePrice: '₦12,000',
+        image: alfredoPastaImg,
       },
-      {
-        id: 'mn-3',
-        name: 'Glazed Heritage Lamb Chops',
-        cutOrOrigin: 'Colorado Meadow Raised',
-        description: 'Charred mint chimichurri, ember-crusted baby carrots, roasted bone glaze.',
-        pricePlaceholder: 'Flame Selection',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80'
-      }
-    ]
+    ],
   },
   {
     id: 'sides',
-    name: 'SIDES',
-    subtitle: 'Companions designed to balance smoke and richness',
+    name: 'Sides',
+    groupLabel: 'Accompaniments & Refreshments',
+    subtitle:
+      'Proposed sample sides — illustrative demo pricing for owner review',
     items: [
       {
         id: 'sd-1',
-        name: 'Truffle & Aged Gruyère Potato Purée',
-        cutOrOrigin: 'Yukon Gold',
-        description: 'Whipped with Normandy butter, shaved black winter truffle, melted aged alpine cheese.',
-        pricePlaceholder: 'House Classic',
-        image: 'https://images.unsplash.com/photo-1518013034458-30b0ee243591?auto=format&fit=crop&w=1000&q=80'
+        name: 'French Fries',
+        originTag: 'Crisp Side · Demo Item',
+        description: 'Golden crisp potato fries seasoned with fine sea salt.',
+        samplePrice: '₦3,500',
+        image: heroCuisineImg,
       },
       {
         id: 'sd-2',
-        name: 'Charred Broccolini & Bone Marrow Butter',
-        cutOrOrigin: 'Farm Grown',
-        description: 'Blistered over flames, roasted almonds, lemon zest, whipped marrow emulsion.',
-        pricePlaceholder: 'Hearth Side',
-        image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80'
+        name: 'Fried Plantain',
+        originTag: 'Sweet & Golden · Demo Item',
+        description: 'Caramelized ripe plantain slices fried to a warm golden finish.',
+        samplePrice: '₦2,500',
+        image: jollofChickenImg,
       },
       {
         id: 'sd-3',
-        name: 'Wild Forest Mushrooms',
-        cutOrOrigin: 'Chanterelle & King Oyster',
-        description: 'Sautéed in pan drippings with shallots, thyme, and 25-year aged sherry vinegar.',
-        pricePlaceholder: 'Woodland Selection',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=80'
-      }
-    ]
-  },
-  {
-    id: 'desserts',
-    name: 'DESSERTS',
-    subtitle: 'The closing cadence of dark chocolates, smoke, and cold creams',
-    items: [
-      {
-        id: 'ds-1',
-        name: '70% Smoked Dark Chocolate Ganache',
-        cutOrOrigin: 'Single Origin Ghana Cacao',
-        description: 'Warm molten center, smoked sea salt flakes, Madagascar bourbon vanilla gelato.',
-        pricePlaceholder: 'Signature Finish',
-        image: IMAGES.dessertDarkChoc,
-        tag: 'House Masterpiece'
+        name: 'Steamed Vegetables',
+        originTag: 'Garden Greens · Demo Item',
+        description: 'Fresh seasonal vegetables lightly steamed with herb butter.',
+        samplePrice: '₦3,000',
+        image: signatureDishImg,
       },
       {
-        id: 'ds-2',
-        name: 'Fire-Torched Bourbon Mille-Feuille',
-        cutOrOrigin: 'Caramelized Puff Pastry',
-        description: 'Whipped mascarpone, charred fig compote, single-barrel bourbon drizzle.',
-        pricePlaceholder: 'Pastry Selection',
-        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1000&q=80'
-      }
-    ]
+        id: 'sd-4',
+        name: 'Coleslaw',
+        originTag: 'Cool & Crisp · Demo Item',
+        description: 'Finely shredded cabbage and carrots in a light creamy dressing.',
+        samplePrice: '₦2,000',
+        image: tableDetailImg,
+      },
+      {
+        id: 'sd-5',
+        name: 'Extra Jollof Rice',
+        originTag: 'House Staple · Demo Item',
+        description: 'An additional portion of smoky Nigerian-style jollof rice.',
+        samplePrice: '₦3,500',
+        image: jollofChickenImg,
+      },
+    ],
   },
   {
     id: 'drinks',
-    name: 'DRINKS',
-    subtitle: 'Artisanal mixology, hand-carved ice, and vintage cellar reserves',
+    name: 'Drinks',
+    groupLabel: 'Accompaniments & Refreshments',
+    subtitle:
+      'Proposed sample beverages — illustrative demo pricing for owner review',
     items: [
       {
         id: 'dr-1',
-        name: 'The Obsidian Old Fashioned',
-        cutOrOrigin: 'Rare Bourbon · House Smoke',
-        description: 'Single block crystal ice, Angostura & walnut bitters, charred orange peel, hickory smoke reveal.',
-        pricePlaceholder: 'Signature Cocktail',
-        image: IMAGES.cocktailSmoked,
-        tag: 'Bespoke Ice'
+        name: 'Chapman',
+        originTag: 'Signature Cooler · Demo Item',
+        description:
+          'Refreshing Nigerian citrus and ruby bitters cooler garnished with cucumber, orange and mint.',
+        samplePrice: '₦3,500',
+        image: chapmanCocktailsImg,
       },
       {
         id: 'dr-2',
-        name: 'Owerri Ember Sour',
-        cutOrOrigin: 'Smoked Mezcal & Rye',
-        description: 'Fresh yuzu, agave nectar, egg white foam, red wine float, flamed rosemary.',
-        pricePlaceholder: 'Hearth Mixology',
-        image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1000&q=80'
+        name: 'Fresh Fruit Juice',
+        originTag: 'Cold Pressed · Demo Item',
+        description: 'Chilled freshly pressed seasonal fruit juice.',
+        samplePrice: '₦3,000',
+        image: chapmanCocktailsImg,
       },
       {
         id: 'dr-3',
-        name: 'Grand Cru Cellar Selections',
-        cutOrOrigin: 'Bordeaux, Napa & Tuscany',
-        description: 'Curated by our dining room sommelier to accentuate aged beef profiles and char notes.',
-        pricePlaceholder: 'By Bottle or Coravin',
-        image: IMAGES.winePour
-      }
-    ]
-  }
+        name: 'Bottled Water',
+        originTag: 'Still Water · Demo Item',
+        description: 'Chilled or room-temperature purified bottled water.',
+        samplePrice: '₦1,000',
+        image: tableDetailImg,
+      },
+      {
+        id: 'dr-4',
+        name: 'Soft Drinks',
+        originTag: 'Chilled Classic · Demo Item',
+        description: 'Assorted chilled carbonated soft drinks.',
+        samplePrice: '₦1,000',
+        image: chapmanCocktailsImg,
+      },
+    ],
+  },
+  {
+    id: 'desserts',
+    name: 'Desserts',
+    groupLabel: 'Accompaniments & Refreshments',
+    subtitle:
+      'Proposed sample desserts — illustrative demo pricing for owner review',
+    items: [
+      {
+        id: 'ds-1',
+        name: 'Chocolate Cake',
+        originTag: 'Rich & Indulgent · Demo Item',
+        description: 'Warm, velvety chocolate sponge layered with smooth cocoa ganache.',
+        samplePrice: '₦5,000',
+        image: dessertDrinksImg,
+      },
+      {
+        id: 'ds-2',
+        name: 'Ice Cream',
+        originTag: 'Chilled Sweet · Demo Item',
+        description: 'Creamy scoops of classic vanilla, chocolate or strawberry.',
+        samplePrice: '₦3,500',
+        image: dessertDrinksImg,
+      },
+      {
+        id: 'ds-3',
+        name: 'Fruit Platter',
+        originTag: 'Fresh Harvest · Demo Item',
+        description: 'Sliced seasonal tropical fruits served chilled.',
+        samplePrice: '₦4,000',
+        image: tableDetailImg,
+      },
+    ],
+  },
 ];
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'gal-1',
-    title: 'The Searing Hearth',
-    category: 'FIRE & CRAFT',
+    title: 'Smoky Jollof Rice & Grilled Chicken',
+    category: 'Nigerian Favourites',
     aspect: 'wide',
-    image: heroSteakImage,
-    caption: 'White oak hardwood embers reaching 900°F for instant Maillard crystallization.'
+    image: jollofChickenImg,
+    caption:
+      'Editorial Concept — Smoky Nigerian-style jollof rice plated with char-grilled chicken and golden plantain.',
   },
   {
     id: 'gal-2',
-    title: 'Architectural Intimacy',
-    category: 'ATMOSPHERE',
+    title: 'Intimate Table Settings',
+    category: 'Dining Details',
     aspect: 'portrait',
-    image: luxuryDiningRoomImage,
-    caption: 'Dark charcoal stone, acoustic leather banquettes, and ambient low-voltage illumination.'
+    image: tableDetailImg,
+    caption:
+      'Editorial Concept — Natural linen, crystal glassware, and starter plating in soft daylight.',
   },
   {
     id: 'gal-3',
-    title: 'The Cut',
-    category: 'THE MEAT',
-    aspect: 'square',
-    image: artOfSteakImage,
-    caption: 'Carved tableside at optimum resting temperature to retain every drop of natural jus.'
+    title: 'Egusi Soup & Smooth Pounded Yam',
+    category: 'Nigerian Favourites',
+    aspect: 'landscape',
+    image: egusiPoundedYamImg,
+    caption:
+      'Editorial Concept — Rich melon-seed soup with leafy greens served alongside pounded yam.',
   },
   {
     id: 'gal-4',
-    title: 'Hand-Carved Crystal Ice',
-    category: 'MIXOLOGY',
-    aspect: 'portrait',
-    image: IMAGES.cocktailSmoked,
-    caption: 'Dense directional-frozen ice designed to chill without dilution.'
+    title: 'Warm Architectural Dining Space',
+    category: 'Restaurant Ambience',
+    aspect: 'landscape',
+    image: introDiningImg,
+    caption:
+      'Editorial Concept — Spacious warm-white and timber dining room accented with deep wine glassware.',
   },
   {
     id: 'gal-5',
-    title: 'Cellar Provenance',
-    category: 'WINE',
+    title: 'Spiced Whole Grilled Catfish',
+    category: 'From the Grill',
     aspect: 'landscape',
-    image: IMAGES.winePour,
-    caption: 'Temperature-controlled cellars housing classic vintages and regional discoveries.'
+    image: grilledCatfishImg,
+    caption:
+      'Editorial Concept — Seasoned whole grilled catfish with pepper sauce, fresh onions, and lime.',
   },
   {
     id: 'gal-6',
-    title: 'Midnight Table',
-    category: 'HOSPITALITY',
+    title: 'Classic Nigerian Chapman',
+    category: 'Drinks & Refreshments',
     aspect: 'landscape',
-    image: IMAGES.tableSettingDark,
-    caption: 'An intimate dining sanctuary situated in the heart of Owerri.'
-  }
+    image: chapmanCocktailsImg,
+    caption:
+      'Editorial Concept — Chilled ruby Chapman coolers garnished with cucumber ribbons and citrus.',
+  },
 ];

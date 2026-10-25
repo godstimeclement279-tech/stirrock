@@ -3,91 +3,88 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Introduction } from './components/Introduction';
-import { SteakArt } from './components/SteakArt';
 import { DigitalMenu } from './components/DigitalMenu';
-import { ExperienceCollage } from './components/ExperienceCollage';
-import { CraftOverFire } from './components/CraftOverFire';
-import { OurStory } from './components/OurStory';
+import { SignatureMoment } from './components/SignatureMoment';
 import { LuxuryGallery } from './components/LuxuryGallery';
 import { ReservationSection } from './components/ReservationSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
-import { MobileStickyReserve } from './components/MobileStickyReserve';
-import { CustomCursor } from './components/CustomCursor';
+import { FullMenuModal } from './components/FullMenuModal';
+import { SAMPLE_MENU_CATEGORIES } from './data/restaurantData';
+import { MenuCategory } from './types';
 
 export default function App() {
-  const scrollToReservations = () => {
-    const el = document.getElementById('reservations');
+  const [menuCategories, setMenuCategories] = useState<MenuCategory[]>(
+    SAMPLE_MENU_CATEGORIES
+  );
+  const [fullMenuOpen, setFullMenuOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-      // Optional subtle focus after scroll
-      setTimeout(() => {
-        const input = el.querySelector('input');
-        if (input) input.focus();
-      }, 700);
     }
   };
 
-  const scrollToMenu = () => {
-    const el = document.getElementById('menu');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleReserveClick = () => {
+    scrollToSection('reservations');
+    setTimeout(() => {
+      const input = document.getElementById('res-name');
+      if (input) input.focus();
+    }, 650);
   };
 
   return (
-    <div className="min-h-screen bg-[#070708] text-[#E8E4DC] selection:bg-[#C5A880]/20 selection:text-[#F4F1EA] relative overflow-x-hidden">
-      {/* Subtle Desktop Circular Interaction Cursor */}
-      <CustomCursor />
+    <div className="min-h-screen bg-[#FAF7F3] text-[#272124] selection:bg-[#722F45] selection:text-[#FAF7F3] relative overflow-x-hidden">
+      {/* 3-Zone Editorial Top Bar */}
+      <Navigation onReserveClick={handleReserveClick} />
 
-      {/* Navigation */}
-      <Navigation onReserveClick={scrollToReservations} />
-
-      {/* Main Sections */}
       <main>
-        {/* Full-Screen Cinematic Hero */}
+        {/* Hero Section: GOOD TASTE. BEAUTIFULLY DONE. */}
         <Hero
-          onReserveClick={scrollToReservations}
-          onExploreMenuClick={scrollToMenu}
+          onExploreMenuClick={() => scrollToSection('menu')}
+          onFindUsClick={() => scrollToSection('contact')}
         />
 
-        {/* Editorial Introduction: Magazine Spread */}
+        {/* Cinematic Introduction: GOOD FOOD. GOOD COMPANY. */}
         <Introduction />
 
-        {/* The Steak Experience: The Art of Steak */}
-        <SteakArt />
+        {/* Menu Showcase: SOMETHING TO LOOK FORWARD TO. (Nigerian & Intercontinental) */}
+        <DigitalMenu
+          categories={menuCategories}
+          onOpenFullMenu={() => setFullMenuOpen(true)}
+          onReserveClick={handleReserveClick}
+        />
 
-        {/* The Digital Menu: Physical to Digital Split Screen */}
-        <DigitalMenu />
+        {/* Signature Food Experience: LOCAL FLAVOUR. GLOBAL INSPIRATION. */}
+        <SignatureMoment />
 
-        {/* The Atmosphere: The Night Begins Here */}
-        <ExperienceCollage />
-
-        {/* The Fire: Crafted Over Fire */}
-        <CraftOverFire />
-
-        {/* Our Story: Honest Editorial Philosophy */}
-        <OurStory />
-
-        {/* Visual Studies: Fashion Editorial Gallery with Lightbox */}
+        {/* Editorial Gallery: Food, Ambience & Dining Details */}
         <LuxuryGallery />
 
-        {/* Luxury Reservation Suite: Your Table Awaits */}
+        {/* Reservation Enquiry: LET'S SAVE YOU A SEAT. */}
         <ReservationSection />
 
-        {/* Location & Directions: 173 Ikenegbu Layout, Owerri */}
+        {/* Location & Contact: Innu Ugbo Street, Agbor 321001, Delta State */}
         <LocationSection />
       </main>
 
-      {/* Spacious Dramatic Footer */}
+      {/* Sophisticated Wine-Red Footer */}
       <Footer />
 
-      {/* Mobile Sticky Reservation CTA */}
-      <MobileStickyReserve onReserveClick={scrollToReservations} />
+      {/* Full Demonstration Menu Overlay with Live Sample Editing */}
+      <FullMenuModal
+        isOpen={fullMenuOpen}
+        onClose={() => setFullMenuOpen(false)}
+        categories={menuCategories}
+        onUpdateCategories={setMenuCategories}
+        onResetCategories={() => setMenuCategories(SAMPLE_MENU_CATEGORIES)}
+        onReserveFromMenu={handleReserveClick}
+      />
     </div>
   );
 }
-

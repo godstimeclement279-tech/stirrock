@@ -1,24 +1,38 @@
-import { MouseEvent } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { MouseEvent, useEffect } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryItem } from '../types';
+import { EditorialImage } from './EditorialImage';
 
 interface LightboxModalProps {
-  isOpen: boolean;
-  onClose: () => void;
   items: GalleryItem[];
-  currentIndex: number;
-  onNavigate: (newIndex: number) => void;
+  currentIndex: number | null;
+  onClose: () => void;
+  onNavigate: (index: number) => void;
 }
 
 export function LightboxModal({
-  isOpen,
-  onClose,
   items,
   currentIndex,
+  onClose,
   onNavigate,
 }: LightboxModalProps) {
-  if (!isOpen || items.length === 0) return null;
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (currentIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft')
+        onNavigate((currentIndex - 1 + items.length) % items.length);
+      if (e.key === 'ArrowRight')
+        onNavigate((currentIndex + 1) % items.length);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, items.length, onClose, onNavigate]);
+
+  if (currentIndex === null) return null;
 
   const currentItem = items[currentIndex];
 
@@ -38,80 +52,92 @@ export function LightboxModal({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-50 bg-[#272124]/95 backdrop-blur-xs flex flex-col justify-between p-6 sm:p-10"
         onClick={onClose}
-        className="fixed inset-0 z-50 bg-[#070708]/95 backdrop-blur-xl flex flex-col justify-between p-6 sm:p-12 cursor-zoom-out"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gallery image viewer"
       >
-        {/* Top Header */}
-        <div className="flex items-center justify-between text-xs tracking-widest text-[#E8E4DC] z-10">
-          <div>
-            <span className="font-serif text-lg tracking-[0.2em] text-[#F4F1EA]">
-              ICE & STEAK
+        {/* Top Bar */}
+        <div className="flex items-center justify-between text-[#FAF7F3]">
+          <div className="text-xs font-sans tracking-[0.2em] uppercase text-[#E9E0DF] tabular-nums">
+            <span>
+              {String(currentIndex + 1).padStart(2, '0')} /{' '}
+              {String(items.length).padStart(2, '0')}
             </span>
-            <span className="text-[10px] text-[#C5A880] ml-3 uppercase">
-              {currentItem.category}
+            <span className="mx-2.5" aria-hidden="true">
+              ·
             </span>
+            <span>{currentItem.category}</span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <span className="text-[11px] text-[#9C988F]">
-              {currentIndex + 1} / {items.length}
-            </span>
-            <button
-              onClick={onClose}
-              className="p-2 text-[#E8E4DC] hover:text-[#C5A880] transition-colors cursor-pointer"
-              aria-label="Close image viewer"
-            >
-              <X size={24} />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="editorial-btn p-2.5 bg-[#722F45] text-[#FAF7F3] hover:bg-[#481B2B] cursor-pointer"
+            aria-label="Close gallery viewer"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        {/* Central Display Image */}
-        <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
-          {/* Navigation Arrows */}
+        {/* Center Image & Navigation Controls with Gentle Cross-Fade */}
+        <div className="relative my-auto flex items-center justify-center max-h-[75vh]">
           <button
+            type="button"
             onClick={handlePrev}
-            className="absolute left-2 sm:left-6 z-10 p-3 bg-black/40 hover:bg-black/70 text-[#E8E4DC] hover:text-[#C5A880] transition-all cursor-pointer"
+            className="editorial-btn absolute left-0 sm:left-4 z-10 p-3 bg-[#722F45]/90 text-[#FAF7F3] hover:bg-[#722F45] cursor-pointer"
             aria-label="Previous image"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={22} />
           </button>
 
-          <motion.div
-            key={currentItem.id}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="max-h-[75vh] max-w-[90vw] flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={currentItem.image}
-              alt={currentItem.title}
-              className="max-h-[75vh] max-w-full object-contain filter brightness-[0.95] contrast-[1.05]"
-              referrerPolicy="no-referrer"
-            />
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentItem.id}
+              initial={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, scale: 0.98 }
+              }
+              animate={{ opacity: 1, scale: 1 }}
+              exit={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, scale: 0.98 }
+              }
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-4xl max-h-[72vh] overflow-hidden border border-[#FAF7F3]/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <EditorialImage
+                src={currentItem.image}
+                alt={currentItem.title}
+                className="max-h-[72vh] w-auto object-contain mx-auto"
+              />
+            </motion.div>
+          </AnimatePresence>
 
           <button
+            type="button"
             onClick={handleNext}
-            className="absolute right-2 sm:right-6 z-10 p-3 bg-black/40 hover:bg-black/70 text-[#E8E4DC] hover:text-[#C5A880] transition-all cursor-pointer"
+            className="editorial-btn absolute right-0 sm:right-4 z-10 p-3 bg-[#722F45]/90 text-[#FAF7F3] hover:bg-[#722F45] cursor-pointer"
             aria-label="Next image"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={22} />
           </button>
         </div>
 
         {/* Bottom Caption */}
         <div
-          className="max-w-2xl mx-auto text-center z-10"
+          className="max-w-2xl mx-auto text-center"
           onClick={(e) => e.stopPropagation()}
         >
-          <h4 className="font-serif text-xl sm:text-2xl text-[#F4F1EA] mb-1">
+          <h3 className="font-serif text-2xl text-[#FAF7F3]">
             {currentItem.title}
-          </h4>
-          <p className="font-sans text-xs sm:text-sm text-[#9C988F] font-light">
+          </h3>
+          <p className="mt-1 text-xs sm:text-sm font-sans text-[#E9E0DF]/80">
             {currentItem.caption}
           </p>
         </div>
